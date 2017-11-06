@@ -15,4 +15,7 @@ RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 USER elasticsearch
 
-RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.2
+ADD plugins plugins
+
+RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.2 && \
+    bin/elasticsearch-plugin install ./plugins/readonlyrest-1.16.13_es5.5.3.zip
