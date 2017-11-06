@@ -4,3 +4,5 @@
 **/.pyc
 *~
 npm-debug.log
+Makefile
+tag.properties
