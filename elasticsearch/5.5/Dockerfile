@@ -15,6 +15,9 @@ RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 USER elasticsearch
 
+RUN && mkdir -p plugins \
+    && chmod 755 plugins
+
 ADD plugins plugins
 
 RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.2 && \
