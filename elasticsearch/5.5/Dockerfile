@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:5.5.3
+FROM docker.elastic.co/elasticsearch/elasticsearch:5.5.2
 
 USER root
 
@@ -20,5 +20,5 @@ RUN mkdir -p plugins \
 
 ADD plugins plugins
 
-RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.3 && \
+RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.2 && \
     bin/elasticsearch-plugin install ./plugins/readonlyrest-1.16.13_es5.5.3.zip
