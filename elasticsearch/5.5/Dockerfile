@@ -1,4 +1,5 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:5.5.2
+LABEL maintainer=devops@prominentedge.com
 
 USER root
 
@@ -13,12 +14,12 @@ RUN cd /tmp \
 ADD elasticsearch.yml /usr/share/elasticsearch/config/
 RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
+COPY plugins /plugins
+
+RUN chmod 755 -R /plugins \
+    && ls -l /plugins/readonlyrest-1.16.13_es5.5.2.zip
+
 USER elasticsearch
 
-RUN mkdir -p plugins \
-    && chmod 755 plugins
-
-ADD plugins plugins
-
 RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.2 && \
-    bin/elasticsearch-plugin install ./plugins/readonlyrest-1.16.13_es5.5.3.zip
+    bin/elasticsearch-plugin install file:///plugins/readonlyrest-1.16.13_es5.5.2.zip
