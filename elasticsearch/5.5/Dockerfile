@@ -15,7 +15,7 @@ RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 USER elasticsearch
 
-RUN && mkdir -p plugins \
+RUN mkdir -p plugins \
     && chmod 755 plugins
 
 ADD plugins plugins
