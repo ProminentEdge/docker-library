@@ -22,5 +22,5 @@ RUN chmod 755 -R /plugins \
 USER elasticsearch
 
 RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.2 && \
-    bin/elasticsearch-plugin install file:///plugins/readonlyrest-1.16.13_es5.5.2.zip && \
+    #bin/elasticsearch-plugin install file:///plugins/readonlyrest-1.16.13_es5.5.2.zip && \
     bin/elasticsearch-plugin install repository-s3
