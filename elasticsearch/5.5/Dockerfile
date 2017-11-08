@@ -14,13 +14,13 @@ RUN cd /tmp \
 ADD elasticsearch.yml /usr/share/elasticsearch/config/
 RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
-COPY plugins /plugins
+COPY plugins /tmp/plugins
 
-RUN chmod 755 -R /plugins \
-    && ls -l /plugins/readonlyrest-1.16.13_es5.5.2.zip
+RUN chmod 755 -R /tmp/plugins \
+    && ls -l /tmp/plugins/readonlyrest-1.16.13_es5.5.2.zip
 
 USER elasticsearch
 
 RUN bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.5.2 && \
-    #bin/elasticsearch-plugin install file:///plugins/readonlyrest-1.16.13_es5.5.2.zip && \
+    #bin/elasticsearch-plugin install file:///tmp/plugins/readonlyrest-1.16.13_es5.5.2.zip && \
     bin/elasticsearch-plugin install repository-s3
