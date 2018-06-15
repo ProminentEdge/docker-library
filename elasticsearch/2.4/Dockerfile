@@ -6,6 +6,8 @@ RUN bin/plugin install lmenezes/elasticsearch-kopf/2.1.2
 ENV BOOTSTRAP_MLOCKALL=false
 ENV JAVA_OPTS=-Djava.net.preferIPv4Stack=true
 
+RUN /usr/share/elasticsearch/bin/plugin install analysis-icu
+
 # common dependencies
 RUN apt-get update && apt-get install -y \
         jq \
