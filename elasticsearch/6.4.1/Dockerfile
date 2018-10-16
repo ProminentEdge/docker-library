@@ -21,5 +21,5 @@ RUN chmod 755 -R /tmp/plugins \
 
 USER elasticsearch
 
-RUN bin/elasticsearch-plugin install file:///tmp/plugins/readonlyrest-1.16.26_es6.0.1.zip && \
+RUN bin/elasticsearch-plugin install file:///tmp/plugins/readonlyrest-1.16.27_es6.4.1.zip && \
     bin/elasticsearch-plugin install repository-s3
