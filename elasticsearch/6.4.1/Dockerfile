@@ -17,9 +17,9 @@ RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 COPY plugins /tmp/plugins
 
 RUN chmod 755 -R /tmp/plugins \
-    && ls -l /tmp/plugins/readonlyrest-1.16.28_es6.4.1.zip
+    && ls -l /tmp/plugins/readonlyrest-1.16.33_es6.4.1.zip
 
 USER elasticsearch
 
-RUN bin/elasticsearch-plugin install --batch file:///tmp/plugins/readonlyrest-1.16.28_es6.4.1.zip && \
+RUN bin/elasticsearch-plugin install --batch file:///tmp/plugins/readonlyrest-1.16.33_es6.4.1.zip && \
     bin/elasticsearch-plugin install --batch repository-s3
