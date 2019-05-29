@@ -12,8 +12,11 @@ RUN cd /tmp \
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_c_customized_image
 ADD elasticsearch.yml /usr/share/elasticsearch/config/
-RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
+RUN chown elasticsearch:elasticsearch config/elasticsearch.yml && \
+    wget https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-icu/analysis-icu-5.5.2.zip
 
 USER elasticsearch
 
-RUN bin/elasticsearch-plugin install repository-s3
+RUN bin/elasticsearch-plugin install repository-s3 && \
+    pwd && \
+    bin/elasticsearch-plugin install file:///usr/share/elasticsearch/analysis-icu-5.5.2.zip
