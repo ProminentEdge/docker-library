@@ -18,5 +18,5 @@ RUN chown elasticsearch:elasticsearch config/elasticsearch.yml && \
 USER elasticsearch
 
 RUN bin/elasticsearch-plugin install repository-s3 && \
-    pwd && \
-    bin/elasticsearch-plugin install file:///usr/share/elasticsearch/analysis-icu-5.5.2.zip
+    bin/elasticsearch-plugin install file:///usr/share/elasticsearch/analysis-icu-5.5.2.zip && \
+    bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:6.2.3.2
