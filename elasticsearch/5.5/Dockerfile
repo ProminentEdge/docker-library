@@ -16,5 +16,4 @@ RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 USER elasticsearch
 
-RUN bin/elasticsearch-plugin install repository-s3 && \
-    bin/elasticsearch-plugin install analysis-icu
+RUN bin/elasticsearch-plugin install repository-s3
