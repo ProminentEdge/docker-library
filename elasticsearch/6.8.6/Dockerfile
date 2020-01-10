@@ -24,8 +24,7 @@ RUN cd /tmp \
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_c_customized_image
 ADD elasticsearch.yml /usr/share/elasticsearch/config/
-RUN chown elasticsearch:elasticsearch config/elasticsearch.yml && \
-    wget https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-icu/analysis-icu-5.5.2.zip
+RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 USER elasticsearch
 
