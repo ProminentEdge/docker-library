@@ -26,6 +26,8 @@ RUN cd /tmp \
 ADD elasticsearch.yml /usr/share/elasticsearch/config/
 RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
-RUN bin/elasticsearch-plugin install repository-s3 && \
-    bin/elasticsearch-plugin install analysis-icu
+USER elasticsearch
+
+RUN bin/elasticsearch-plugin install --force repository-s3 && \
+    bin/elasticsearch-plugin install --force analysis-icu
 
