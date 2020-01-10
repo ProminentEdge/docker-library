@@ -28,6 +28,6 @@ RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 USER elasticsearch
 
-RUN bin/elasticsearch-plugin install --force repository-s3 && \
-    bin/elasticsearch-plugin install --force analysis-icu
+RUN bin/elasticsearch-plugin install --batch repository-s3 && \
+    bin/elasticsearch-plugin install --batch analysis-icu
 
