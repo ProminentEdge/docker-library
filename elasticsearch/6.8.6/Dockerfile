@@ -1,7 +1,7 @@
 # Elasticsearch 6.8.6
 
 # This image re-bundles the Docker image from the upstream provider, Elastic.
-FROM docker.elastic.co/elasticsearch/elasticsearch:7.5.2@sha256:81473aab06ae49a5058210610ac848cc8ae3393f319f23d4c5d982580b54ba36
+FROM docker.elastic.co/elasticsearch/elasticsearch:6.8.6@sha256:81473aab06ae49a5058210610ac848cc8ae3393f319f23d4c5d982580b54ba36
 LABEL maintainer=devops@prominentedge.com
 
 # The upstream image was built by:
