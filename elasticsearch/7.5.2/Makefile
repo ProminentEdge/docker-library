@@ -9,7 +9,7 @@ ENVIRONMENT ?= development
 SHA=$(shell git rev-parse --short HEAD)
 BRANCH=$(shell git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 
-TAG=${BRANCH}-${SHA}-${ENVIRONMENT}-6.8.6
+TAG=${BRANCH}-${SHA}-${ENVIRONMENT}-7.5.2
 
 build:
 	docker build \
