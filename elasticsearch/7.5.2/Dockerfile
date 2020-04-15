@@ -27,10 +27,10 @@ ADD elasticsearch.yml /usr/share/elasticsearch/config/
 RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 RUN chmod 755 -R /tmp/plugins \
-    && ls -l /tmp/plugins/readonlyrest-1.19.4_es7.5.1.zip
+    && ls -l /tmp/plugins/readonlyrest-1.19.4_es7.5.2.zip
 
 USER elasticsearch
 
-RUN bin/elasticsearch-plugin install --batch file:///tmp/plugins/readonlyrest-1.19.4_es7.5.1.zip && \
+RUN bin/elasticsearch-plugin install --batch file:///tmp/plugins/readonlyrest-1.19.4_es7.5.2.zip && \
     bin/elasticsearch-plugin install --batch repository-s3
 
