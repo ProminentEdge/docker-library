@@ -26,6 +26,8 @@ RUN cd /tmp \
 ADD elasticsearch.yml /usr/share/elasticsearch/config/
 RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
+COPY plugins /tmp/plugins
+
 RUN chmod 755 -R /tmp/plugins \
     && ls -l /tmp/plugins/readonlyrest-1.19.4_es7.5.2.zip
 
