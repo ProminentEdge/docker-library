@@ -1,0 +1,6 @@
+  jwt:
+    - name: jwt1
+      signature_algo: 'HMAC'
+      signature_key: signature_key_token
+      user_claim: 'firecares_id'
+      roles_claim: 'roles'

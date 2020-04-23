@@ -13,6 +13,10 @@ TAG=${BRANCH}-${SHA}-${ENVIRONMENT}-7.5.2
 
 build:
 	docker build \
+	--build-arg admin_token="${ADMIN_TOKEN}" \
+	--build-arg ingest_token="${INGEST_TOKEN}" \
+	--build-arg auth_token="${AUTH_TOKEN}" \
+	--build-arg signature_token="${SIGNATURE_TOKEN}" \
 	-t $(ORG)/$(REPO):${TAG} \
 	-t $(ORG)/$(PUBLIC_REPO):${TAG} \
 	--no-cache \

@@ -1,8 +1,30 @@
+cluster.name: elasticsearch
+
+cluster.routing.allocation.allow_rebalance: always
+cluster.routing.allocation.total_shards_per_node: 200
+
+node.name: ${HOSTNAME}
+
 network.host: 0.0.0.0
 
-processors: ${PROCESSORS:}
+# see https://github.com/kubernetes/kubernetes/issues/3595
+bootstrap.memory_lock: false
 
-# minimum_master_nodes need to be explicitly set when bound on a public IP
-# set to 1 to allow single node clusters
-# Details: https://github.com/elastic/elasticsearch/pull/17288
-discovery.zen.minimum_master_nodes: 1
+discovery:
+  zen:
+    minimum_master_nodes: 2
+    ping.unicast.hosts: elasticsearch-cluster.default.svc.cluster.local:9300
+    ping.unicast.hosts.resolve_timeout: 10s 
+
+gateway.expected_master_nodes: 3
+gateway.expected_data_nodes: 6
+gateway.recover_after_time: 3m
+gateway.recover_after_master_nodes: 1
+gateway.recover_after_data_nodes: 1
+
+
+# see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
+xpack.ml.enabled: false
+xpack.monitoring.enabled: false
+xpack.security.enabled: false
+xpack.watcher.enabled: false
