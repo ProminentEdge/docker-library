@@ -4,16 +4,6 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:7.5.2
 LABEL maintainer=devops@prominentedge.com
 
-ARG admin_token
-ARG ingest_token
-ARG auth_token
-ARG signature_token
-
-ENV ADMIN_TOKEN=$admin_token
-ENV INGEST_TOKEN=$ingest_token
-ENV AUTH_TOKEN=$admin_token
-ENV SIGNATURE_TOKEN=$signature_token
-
 USER root
 
 ENV JQ_VERSION 1.5 
@@ -31,11 +21,6 @@ ADD ror.yml /usr/share/elasticsearch/config/
 RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 
 COPY plugins /tmp/plugins
-
-RUN sed -i "s/admin_token/${ADMIN_TOKEN}/g" /usr/share/elasticsearch/config/ror.yml && \
-    sed -i "s/auth_token/${AUTH_TOKEN}/g" /usr/share/elasticsearch/config/ror.yml && \
-    sed -i "s/ingest_token/${INGEST_TOKEN}/g" /usr/share/elasticsearch/config/ror.yml && \
-    sed -i "s/signature_token/${SIGNATURE_TOKEN}/g" /usr/share/elasticsearch/config/jwt.yml
 
 RUN chmod 755 -R /tmp/plugins \
     && ls -l /tmp/plugins/readonlyrest-1.19.4_es7.5.2.zip
