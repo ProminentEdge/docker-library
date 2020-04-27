@@ -23,7 +23,7 @@ ADD elasticsearch.yml /etc/elasticsearch/
 ADD jwt.yml /etc/elasticsearch/
 ADD ror.yml /etc/elasticsearch/
 
-RUN chown elasticsearch:elasticsearch /etc/elasticsearch/elasticsearch/elasticsearch.yml
+RUN chown elasticsearch:elasticsearch /etc/elasticsearch/elasticsearch.yml
 
 COPY plugins /tmp/plugins
 
