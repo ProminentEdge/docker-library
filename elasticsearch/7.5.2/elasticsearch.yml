@@ -22,6 +22,7 @@ gateway.recover_after_time: 3m
 gateway.recover_after_master_nodes: 1
 gateway.recover_after_data_nodes: 1
 
+searchguard.ssl.http.enabled: false
 
 # see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
 xpack.ml.enabled: false
