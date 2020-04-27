@@ -3,7 +3,6 @@
 
 ORG ?= prominentedgestatengine
 REPO ?= elasticsearch
-PUBLIC_REPO = public-$(REPO)
 ENVIRONMENT ?= development
 
 SHA=$(shell git rev-parse --short HEAD)
@@ -17,7 +16,6 @@ script:
 build:
 	docker build \
 	-t $(ORG)/$(REPO):${TAG} \
-	-t $(ORG)/$(PUBLIC_REPO):${TAG} \
 	--no-cache \
 	.
 
@@ -27,10 +25,3 @@ push:
 	docker push \
 	$(ORG)/$(REPO):${TAG}
 
-	docker tag $(ORG)/$(PUBLIC_REPO):${TAG} $(ORG)/$(PUBLIC_REPO):latest
-
-	docker push \
-	$(ORG)/$(PUBLIC_REPO):${TAG}
-
-	docker push \
-	$(ORG)/$(PUBLIC_REPO):latest
