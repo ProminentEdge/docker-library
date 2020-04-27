@@ -9,7 +9,8 @@ USER root
 ENV JQ_VERSION 1.5 
 ENV JQ_SHA256 c6b3a7d7d3e7b70c6f51b706a3b90bd01833846c54d32ca32f0027f00226ff6d
 
-RUN mkdir -p /etc/elasticsearch/
+RUN mkdir -p /etc/elasticsearch/ && \
+    chmod -R 777 /etc/elasticsearch
 
 ENV ES_PATH_CONF=/etc/elasticsearch/
 
