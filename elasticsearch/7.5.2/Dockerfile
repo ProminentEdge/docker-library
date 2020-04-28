@@ -9,11 +9,12 @@ USER root
 ENV JQ_VERSION 1.5 
 ENV JQ_SHA256 c6b3a7d7d3e7b70c6f51b706a3b90bd01833846c54d32ca32f0027f00226ff6d
 
-RUN mkdir -p /usr/share/elasticsearch/ && \
-    chmod -R 777 /usr/share/elasticsearch && \
-    chown -R elasticsearch:elasticsearch /usr/share/elasticsearch
+RUN mkdir -p /etc/elasticsearch/elasticsearch/ && \
+    chmod -R 777 /etc/elasticsearch/elasticsearch && \
+    chown -R elasticsearch:elasticsearch /etc/elasticsearch/elasticsearch
 
-ENV ES_PATH_CONF=/usr/share/elasticsearch/
+ENV ES_PATH_CONF=/etc/elasticsearch/elasticsearch/
+ENV ES_HOME=/usr/share/elasticsearch/
 
 RUN cd /tmp \
     && curl -o /usr/bin/jq -SL "https://github.com/stedolan/jq/releases/download/jq-$JQ_VERSION/jq-linux64" \
@@ -21,13 +22,13 @@ RUN cd /tmp \
     && chmod +x /usr/bin/jq
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_c_customized_image
-ADD elasticsearch.yml /usr/share/elasticsearch/
-ADD jwt.yml /usr/share/elasticsearch/
-ADD ror.yml /usr/share/elasticsearch/
+ADD elasticsearch.yml /etc/elasticsearch/elasticsearch/
+ADD jwt.yml /etc/elasticsearch/elasticsearch/
+ADD ror.yml /etc/elasticsearch/elasticsearch/
 
-#RUN chown elasticsearch:elasticsearch /usr/share/elasticsearch/elasticsearch.yml
-RUN chown elasticsearch:elasticsearch /usr/share/elasticsearch/jwt.yml
-RUN chown elasticsearch:elasticsearch /usr/share/elasticsearch/ror.yml
+#RUN chown elasticsearch:elasticsearch /etc/elasticsearch/elasticsearch/elasticsearch.yml
+RUN chown elasticsearch:elasticsearch /etc/elasticsearch/elasticsearch/jwt.yml
+RUN chown elasticsearch:elasticsearch /etc/elasticsearch/elasticsearch/ror.yml
 
 COPY plugins /tmp/plugins
 
