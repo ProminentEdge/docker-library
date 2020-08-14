@@ -8,7 +8,7 @@ ENVIRONMENT ?= development
 SHA=$(shell git rev-parse --short HEAD)
 BRANCH=$(shell git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 
-TAG=${BRANCH}-${SHA}-${ENVIRONMENT}-7.5.2
+TAG=${BRANCH}-${SHA}-${ENVIRONMENT}-7.8.1
 
 script:
 	./build.sh
