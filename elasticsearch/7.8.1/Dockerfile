@@ -21,7 +21,6 @@ RUN cd /tmp \
     && chmod +x /usr/bin/jq
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_c_customized_image
-ADD elasticsearch.yml /etc/elasticsearch/
 ADD jwt.yml /etc/elasticsearch/
 ADD ror.yml /etc/elasticsearch/
 ADD jvm.options /etc/elasticsearch/
