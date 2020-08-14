@@ -37,7 +37,7 @@ RUN chmod 755 -R /tmp/plugins \
 
 USER elasticsearch
 
-RUN bin/elasticsearch-plugin install --batch file:///tmp/plugins/ls
-c && \
+RUN bin/elasticsearch-plugin install --batch file:///tmp/plugins/readonlyrest-1.21.0_es7.8.1.zip
+&& \
     bin/elasticsearch-plugin install --batch repository-s3
 
