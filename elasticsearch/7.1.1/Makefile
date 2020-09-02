@@ -2,7 +2,7 @@
 
 
 REPO ?= elasticsearch
-ORG = 445861113736.dkr.ecr.us-east-1.amazonaws.com
+ORG = 508654928277.dkr.ecr.us-east-1.amazonaws.com
 TAG = latest
 
 SHA=$(shell git rev-parse --short HEAD)
