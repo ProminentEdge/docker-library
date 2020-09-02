@@ -8,6 +8,9 @@ TAG = latest
 SHA=$(shell git rev-parse --short HEAD)
 BRANCH=$(shell git rev-parse --symbolic-full-name --abbrev-ref HEAD)
 
+login:
+	aws ecr get-login --region us-east-1 | cut -d' ' -f 6 | docker login --username AWS --password-stdin 508654928277.dkr.ecr.us-east-1.amazonaws.com
+
 build:
 	docker build \
 	-t $(ORG)/$(REPO):${TAG} \
