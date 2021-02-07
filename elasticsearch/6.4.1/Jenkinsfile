@@ -1,0 +1,68 @@
+#!/usr/bin/env groovy
+
+def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
+
+pipeline {
+
+  agent any
+
+  options {
+    timestamps()
+  }
+
+  parameters {
+    choice(
+      name: 'ENVIRONMENT',
+      choices: [
+        '',
+        'development',
+        'staging',
+        'production'
+      ],
+      description: 'Environment To Build For'
+    )
+  }
+
+  environment {
+    ES_VERSION = "6.4.1"
+    WORK_DIR = "elasticsearch/${ES_VERSION}"
+    ENVIRONMENT = "${params.ENVIRONMENT}"
+    DOCKERHUB_USER = credentials('JENKINS_DOCKERHUB_USER')
+    DOCKERHUB_PASSWORD = credentials('JENKINS_DOCKERHUB_PASSWORD')
+  }
+
+  stages {
+    stage('Build and Push ES Docker Image') {
+      steps {
+        script {
+          // slackSend (
+          //   color: COLOR_MAP[currentBuild.currentResult],
+          //   channel: "statengine-alerts",
+          //   message: '*STARTED:* Building Elasticsearch Docker Image - ($BUILD_URL)'
+          // )
+          dir("${WORK_DIR}") {
+            sh('make login DOCKERHUB_USER=$DOCKERHUB_USER DOCKERHUB_PASSWORD=$DOCKERHUB_PASSWORD')
+            sh('make all ENVIRONMENT=$ENVIRONMENT')
+          }
+        }
+      }
+
+      // post {
+      //   success {
+      //     slackSend (
+      //       color: COLOR_MAP[currentBuild.currentResult],
+      //       channel: "dds-devops",
+      //       message: '*SUCCESS:* Built and Pushed New Elasticsearch Docker Image - ($BUILD_URL)'
+      //     )
+      //   }
+      //   failure {
+      //     slackSend (
+      //       color: COLOR_MAP[currentBuild.currentResult],
+      //       channel: "dds-devops",
+      //       message: '*FAILED:* Building Elasticsearch Docker Image. Please correct issue and run again - ($BUILD_URL)
+      //     )
+      //   }
+      // }
+    }
+  }
+}
